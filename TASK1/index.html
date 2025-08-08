@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(ellipse at top left, #0a0a0a, #121212);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00ffe7, #007bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #00ffe7;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'), radial-gradient(circle at center, #1f1f1f 0%, #0a0a0a 100%);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(to right, #00ffe7, #007bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .tagline {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      opacity: 0.8;
+      animation: fadeInDown 1.2s ease-in-out;
+    }
+
+    .cta-button {
+      margin-top: 2rem;
+      background: #00ffe7;
+      color: #000;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ffe7;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffe7;
+    }
+
+    section {
+      padding: 100px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #00ffe7, #007bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-image img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 3px solid #00ffe7;
+      object-fit: cover;
+    }
+
+    .bio {
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: #bbb;
+      line-height: 1.7;
+    }
+
+    /* Skill Cards */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.03);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .project-image {
+      height: 180px;
+      background: #007bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      color: #ccc;
+    }
+
+    /* Contact */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-item h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-item a {
+      color: #00ffe7;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-image img {
+        width: 180px;
+        height: 180px;
+      }
+      .github a {
+        color: #00ffe7;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+      
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Gourishankar</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Gourishankar</h1>
+    <p class="tagline">Full-Stack Developer & Final Year CSE(IoT) Student</p>
+    <a href="#about" class="cta-button">Explore Portfolio</a>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="container about-content">
+      <div class="profile-image">
+        <img src="profile.png" alt="Gourishankar" />
+      </div>
+      <div class="bio">
+        <p>Hello! I'm Gourishankar, a full-stack web developer and final-year CSE(IoT) student with a 9.3 YGPA at IEM Kolkata. I build scalable applications using React.js, Node.js, Next.js, and modern databases.</p>
+        <p>With over 650+ solved coding problems , I specialize in creating clean, functional, and impactful user experiences. Let’s build something extraordinary together!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="container skills-grid">
+      <div class="skill-card">
+        <h3>Frontend</h3>
+        <p>React.js, Next.js, Tailwind CSS, Responsive UI</p>
+      </div>
+      <div class="skill-card">
+        <h3>Backend</h3>
+        <p>Node.js, Express, REST APIs, JWT Auth</p>
+      </div>
+      <div class="skill-card">
+        <h3>Database</h3>
+        <p>MongoDB, PostgreSQL, MySQL</p>
+      </div>
+      <div class="skill-card">
+        <h3>Tools</h3>
+        <p>Git, Docker, Postman, Vercel</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+  <h2>Projects</h2>
+  <div class="container projects-grid">
+    <div class="project-card">
+      <div class="project-image">Clash Voting App</div>
+      <div class="project-content">
+        <p>Live voting app with TypeScript, Next.js, and PostgreSQL. Real-time updates and clean UI.</p>
+        <br>
+        <div class="github">
+          <a href="https://github.com/3211SHANKAR/clash-voting-app" target="_blank">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image">BlogApp</div>
+      <div class="project-content">
+        <p>Full-stack social blogging platform with user auth, real-time interactions, and Cloudinary.</p>
+        <br>
+        <div class="github">
+          <a href="https://github.com/3211SHANKAR/clash-voting-app" target="_blank">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image">Task Manager</div>
+      <div class="project-content">
+        <p>Comprehensive task system with role-based access, JWT, and MERN stack support.</p>
+        <br>
+        <div class="github">
+          <a href="https://github.com/3211SHANKAR/clash-voting-app" target="_blank">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="container contact-info">
+      <div class="contact-item">
+        <h3>Email</h3>
+        <a href="mailto:setukrjha9040@gmail.com">gourishankar3211@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <a href="tel:+916299186596">+91 62991 86506</a>
+      </div>
+      <div class="contact-item">
+        <h3>GitHub</h3>
+        <a href="https://github.com/3211SHANKAR">github.com/3211SHANKAR</a>
+      </div>
+      <div class="contact-item">
+        <h3>LinkedIn</h3>
+        <a href="https://www.linkedin.com/in/gourishankar-dev/">gourishankar-dev</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Gourishankar. All rights reserved. Designed with ❤️</p>
+    </div>
+  </footer>
+</body>
+</html>
